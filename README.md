@@ -1,5 +1,5 @@
 # Plist to CloudKit
-![CloudKit](PlistToCloud/cloudkit_2x.png)
+![CloudKit](cloudkit_2x.png)
 
 Upload your Plist files instantly to CloudKit using this tool. You do not need to manually enter your data to CloudKit.
 
@@ -17,7 +17,7 @@ Add the file [PlistCloud.swift](PlistToCloud/PlistCloud.swift) to your project
 4. Set the Record Type name `PlistCloud.setRecord("contact")`
 5. Set the field names `PlistCloud.setFields(["id","name"])`
 6. Set your Plist file name `PlistCloud.setFileName("contact")`
-![Plist File](PlistToCloud/plistFile.png?raw=true "Plist file example")
+![Plist File](plistFile.png?raw=true "Plist file example")
 
 ## Example Project
 
