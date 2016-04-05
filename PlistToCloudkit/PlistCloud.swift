@@ -8,11 +8,12 @@
 
 import Foundation
 import CloudKit
+import UIKit
 
-//protocol PlistProtocol {
-//    func finishedUploading(){
-//    }
-//}
+protocol CloudKitDelegate {
+    func errorUpdating(error: NSError)
+    func modelUpdated()
+}
 
 class PlistCloud: NSObject {
     
@@ -20,11 +21,11 @@ class PlistCloud: NSObject {
     static var RecordType: CKRecord!
     static var fieldsArray: [String]!
     static var records: [CKRecord]!
+    static var result: String!
+    static var PlistFileName: String!
     
- //   override init() {
- //       records = [CKRecord]()
- //   }
-    
+    static var delegate : CloudKitDelegate?
+
     static func setContainer(container: String){
         let container = CKContainer(identifier: container)
         publicDatabase = container.publicCloudDatabase
@@ -38,7 +39,11 @@ class PlistCloud: NSObject {
         fieldsArray = fields
     }
     
-    static func plistToCloudkit(PlistFile: String) {
+    static func setFileName(filename: String){
+        PlistFileName = filename
+    }
+    
+    static func plistToCloudkit() {
         
         let ops:CKModifyRecordsOperation = CKModifyRecordsOperation()
         ops.savePolicy = CKRecordSavePolicy.IfServerRecordUnchanged
@@ -46,19 +51,13 @@ class PlistCloud: NSObject {
         
         records = [CKRecord]()
         
-            if let arrayQuotes = NSArray(contentsOfFile: NSBundle.mainBundle().pathForResource(PlistFile, ofType: "plist")!) {
+            if let arrayQuotes = NSArray(contentsOfFile: NSBundle.mainBundle().pathForResource(PlistFileName, ofType: "plist")!) {
                 
                 for x in 0 ..< arrayQuotes.count {
-                    
-                    RecordType = CKRecord(recordType: "contact", recordID: CKRecordID(recordName: "contact\(x)"))
-                    let fieldRow = arrayQuotes[x].objectForKey("name")!
-                    let fieldRow2 = arrayQuotes[x].objectForKey("id")!
 
-                    RecordType.setValue(fieldRow, forKey: "name")
-                    RecordType.setValue(fieldRow2, forKey: "id")
+                    RecordType = CKRecord(recordType: PlistFileName)
 
                     for i in 0 ..< fieldsArray.count  {
-                        RecordType = CKRecord(recordType: PlistFile, recordID: CKRecordID(recordName: PlistFile+"\(x)"))
                        let fieldRow = arrayQuotes[x].objectForKey(fieldsArray[i])!
                         RecordType.setValue(fieldRow, forKey: fieldsArray[i])
                     }
@@ -67,18 +66,29 @@ class PlistCloud: NSObject {
                     
                     records.append(RecordType)
                 }
+            
+                    let uploadOperation = CKModifyRecordsOperation.init(recordsToSave: records, recordIDsToDelete: nil)
+                    uploadOperation.savePolicy = .IfServerRecordUnchanged // default
+                    uploadOperation.modifyRecordsCompletionBlock = { savedRecords, deletedRecordsIDs, error in
+                    
+                        if error != nil {
+                            print("Error saving records: \(error!.localizedDescription)")
+                            dispatch_async(dispatch_get_main_queue()) {
+                                self.delegate?.errorUpdating(error!)
+                            }
+                        } else {
+                            print("Successfully saved records")
+                            dispatch_async(dispatch_get_main_queue()) {
+                                self.delegate?.modelUpdated()
+                                return
+                            }
+                        }
+                    }
+                publicDatabase.addOperation(uploadOperation)
             }
-        
-        let uploadOperation = CKModifyRecordsOperation.init(recordsToSave: records, recordIDsToDelete: nil)
-        uploadOperation.savePolicy = .IfServerRecordUnchanged // default
-        uploadOperation.modifyRecordsCompletionBlock = { savedRecords, deletedRecordsIDs, error in
-            if error != nil {
-                print("Error saving records: \(error!.localizedDescription)")
-            } else {
-                print("Successfully saved records")
+            else{
+                print("could not load the plist file!")
             }
-        }
-        publicDatabase.addOperation(uploadOperation)
         
     }
 }

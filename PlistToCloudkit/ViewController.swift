@@ -8,25 +8,31 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController,CloudKitDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-
-    @IBAction func uploadToCloudkit(sender: AnyObject) {
+        
+        PlistCloud.delegate = self
         
         PlistCloud.setContainer("iCloud.com.carrotApps.plist")
         PlistCloud.setRecord("contact")
         PlistCloud.setFields(["id","name"])
-        PlistCloud.plistToCloudkit("contact")
-        
+        PlistCloud.setFileName("contact")
+    }
+
+    @IBOutlet weak var startButton: UIButton!
+    @IBAction func uploadToCloudkit(sender: AnyObject) {
+        PlistCloud.plistToCloudkit()
+        startButton.enabled=false
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func errorUpdating(error: NSError){
+        UIAlertView.init(title: "error", message: error.localizedDescription, delegate: self, cancelButtonTitle: "Dismiss").show()
+        startButton.enabled = true
+    }
+    func modelUpdated(){
+        UIAlertView.init(title: "success", message:"successfully uploaded to Cloudkit", delegate: self, cancelButtonTitle: "Dismiss").show()
+        startButton.enabled = true
     }
 }
-
