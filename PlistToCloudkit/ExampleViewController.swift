@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController,CloudKitDelegate {
+class ExampleViewController: UIViewController,CloudKitDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
