@@ -5,7 +5,7 @@ Upload your Plist files instantly to CloudKit using this tool. You do not need t
 
 ## Installation
 
-Add the file [PlistCloud.swift](PlistToCloudKit/PlistCloud.swift) to your project
+Add the file [PlistCloud.swift](PlistToCloudkit/PlistCloud.swift) to your project
 
 ## Usage
 
@@ -21,7 +21,7 @@ Add the file [PlistCloud.swift](PlistToCloudKit/PlistCloud.swift) to your projec
 
 ## Example Project
 
-Run the program and check the [ExampleViewController.swift](PlistToCloudKit/ExampleViewController.swift) file to see how this works!
+Run the program and check the [ExampleViewController.swift](PlistToCloudkit/ExampleViewController.swift) file to see how this works!
 
 ##Feedback and Contribution
 
