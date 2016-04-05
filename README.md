@@ -10,9 +10,9 @@ Add the file [PlistCloud.swift](PlistToCloud/PlistCloud.swift) to your project
 ## Usage
 
 1. In the [iCloud dashboard](https://icloud.developer.apple.com/dashboard/), add your Record type and attributes.
-![Dashboard example](PlistToCloud/cloudkitDashboard.png?raw=true "Dashboard example")
+![Dashboard example](cloudkitDashboard.png?raw=true "Dashboard example")
 2. Turn on iCloud in the Capabilities tab for your build target. Make sure to enable CloudKit using the checkbox that shows up.
-![iCloud Entitlements](PlistToCloud/entitlements.png?raw=true "Entitlement example")
+![iCloud Entitlements](entitlements.png?raw=true "Entitlement example")
 3. Set the container name `PlistCloud.setContainer("iCloud.com.carrotApps.plist")`
 4. Set the Record Type name `PlistCloud.setRecord("contact")`
 5. Set the field names `PlistCloud.setFields(["id","name"])`
