@@ -29,12 +29,19 @@ class ExampleViewController: UIViewController,CloudKitDelegate {
     
     func errorUpdating(error: NSError){
         let alert = UIAlertController.init(title: "error", message: error.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
+        NSLog("The \"OK\" alert occured.")
+        }))
         self.present(alert, animated: true, completion: nil)
         
         startButton.isEnabled = true
     }
+    
     func modelUpdated(){
         let alert = UIAlertController(title: "success", message: "successfully uploaded to Cloudkit", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
+        NSLog("The \"OK\" alert occured.")
+        }))
         self.present(alert, animated: true, completion: nil)
 
         startButton.isEnabled = true

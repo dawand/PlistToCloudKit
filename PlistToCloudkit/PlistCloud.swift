@@ -53,7 +53,7 @@ class PlistCloud: NSObject {
         
         let plistUrl = Bundle.main.path(forResource: PlistFileName, ofType: "plist")
         let plistData = try! Data(contentsOf: URL(fileURLWithPath: plistUrl!))
-        let plistArray = try! PropertyListSerialization.propertyList(from: plistData, options: [], format: nil) as! [[String:String]]
+        let plistArray = try! PropertyListSerialization.propertyList(from: plistData, options: [], format: nil) as! [[String:Any]]
         
         for x in 0 ..< plistArray.count {
             
@@ -75,10 +75,14 @@ class PlistCloud: NSObject {
             
             if error != nil {
                 print("Error saving records: \(error!.localizedDescription)")
-                self.delegate?.errorUpdating(error: error! as NSError)
+                DispatchQueue.main.async {
+                    self.delegate?.errorUpdating(error: error! as NSError)
+                }
             } else {
                 print("Successfully saved records")
-                self.delegate?.modelUpdated()
+                DispatchQueue.main.async {
+                    self.delegate?.modelUpdated()
+                }
                 return
             }
         }

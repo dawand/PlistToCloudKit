@@ -110,6 +110,7 @@
 			children = (
 				8B5742251CADA985009DD51B /* PlistToCloudkit.entitlements */,
 				8B5741F51CAD9BD1009DD51B /* AppDelegate.swift */,
+				8B61E99B23A7C71D00380390 /* Config.swift */,
 				8B5742231CAD9CD2009DD51B /* PlistCloud.swift */,
 				8B5741F71CAD9BD1009DD51B /* ExampleViewController.swift */,
 				8B5741F91CAD9BD1009DD51B /* Main.storyboard */,
@@ -117,7 +118,6 @@
 				8B5741FE1CAD9BD1009DD51B /* LaunchScreen.storyboard */,
 				8B61E99A23A7C70600380390 /* Data */,
 				8B5742011CAD9BD1009DD51B /* Info.plist */,
-				8B61E99B23A7C71D00380390 /* Config.swift */,
 			);
 			path = PlistToCloudkit;
 			sourceTree = "<group>";
@@ -440,6 +440,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.carrotApps.PlistToCloudkit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -453,6 +454,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.carrotApps.PlistToCloudkit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
