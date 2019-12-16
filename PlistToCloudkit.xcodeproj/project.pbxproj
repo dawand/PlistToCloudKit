@@ -17,6 +17,7 @@
 		8B5742241CAD9CD2009DD51B /* PlistCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5742231CAD9CD2009DD51B /* PlistCloud.swift */; };
 		8B5742271CADA9BB009DD51B /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5742261CADA9BB009DD51B /* CloudKit.framework */; };
 		8B5742291CADAB40009DD51B /* contact.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B5742281CADAB40009DD51B /* contact.plist */; };
+		8B61E99C23A7C71D00380390 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B61E99B23A7C71D00380390 /* Config.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		8B5742251CADA985009DD51B /* PlistToCloudkit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PlistToCloudkit.entitlements; sourceTree = "<group>"; };
 		8B5742261CADA9BB009DD51B /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		8B5742281CADAB40009DD51B /* contact.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = contact.plist; sourceTree = "<group>"; };
+		8B61E99B23A7C71D00380390 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,8 +115,9 @@
 				8B5741F91CAD9BD1009DD51B /* Main.storyboard */,
 				8B5741FC1CAD9BD1009DD51B /* Assets.xcassets */,
 				8B5741FE1CAD9BD1009DD51B /* LaunchScreen.storyboard */,
-				8B5742281CADAB40009DD51B /* contact.plist */,
+				8B61E99A23A7C70600380390 /* Data */,
 				8B5742011CAD9BD1009DD51B /* Info.plist */,
+				8B61E99B23A7C71D00380390 /* Config.swift */,
 			);
 			path = PlistToCloudkit;
 			sourceTree = "<group>";
@@ -135,6 +138,14 @@
 				8B5742171CAD9BD1009DD51B /* Info.plist */,
 			);
 			path = PlistToCloudkitUITests;
+			sourceTree = "<group>";
+		};
+		8B61E99A23A7C70600380390 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				8B5742281CADAB40009DD51B /* contact.plist */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,6 +238,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -276,6 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B5741F81CAD9BD1009DD51B /* ExampleViewController.swift in Sources */,
+				8B61E99C23A7C71D00380390 /* Config.swift in Sources */,
 				8B5742241CAD9CD2009DD51B /* PlistCloud.swift in Sources */,
 				8B5741F61CAD9BD1009DD51B /* AppDelegate.swift in Sources */,
 			);
@@ -508,6 +521,7 @@
 				8B57421C1CAD9BD1009DD51B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8B57421D1CAD9BD1009DD51B /* Build configuration list for PBXNativeTarget "PlistToCloudkitTests" */ = {
 			isa = XCConfigurationList;
@@ -516,6 +530,7 @@
 				8B57421F1CAD9BD1009DD51B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8B5742201CAD9BD1009DD51B /* Build configuration list for PBXNativeTarget "PlistToCloudkitUITests" */ = {
 			isa = XCConfigurationList;
@@ -524,6 +539,7 @@
 				8B5742221CAD9BD1009DD51B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

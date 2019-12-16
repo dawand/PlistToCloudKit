@@ -15,24 +15,28 @@ class ExampleViewController: UIViewController,CloudKitDelegate {
         
         PlistCloud.delegate = self
         
-        PlistCloud.setContainer("iCloud.com.carrotApps.plist")
-        PlistCloud.setRecord("contact")
-        PlistCloud.setFields(["id","name"])
-        PlistCloud.setFileName("contact")
+        PlistCloud.setContainer(container: CONTAINER_NAME)
+        PlistCloud.setRecord(record: RECORD_NAME)
+        PlistCloud.setFields(fields: FIELD_NAMES)
+        PlistCloud.setFileName(filename: FILE_NAME)
     }
 
     @IBOutlet weak var startButton: UIButton!
     @IBAction func uploadToCloudkit(sender: AnyObject) {
         PlistCloud.plistToCloudkit()
-        startButton.enabled=false
+        startButton.isEnabled=false
     }
     
     func errorUpdating(error: NSError){
-        UIAlertView.init(title: "error", message: error.localizedDescription, delegate: self, cancelButtonTitle: "Dismiss").show()
-        startButton.enabled = true
+        let alert = UIAlertController.init(title: "error", message: error.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+        self.present(alert, animated: true, completion: nil)
+        
+        startButton.isEnabled = true
     }
     func modelUpdated(){
-        UIAlertView.init(title: "success", message:"successfully uploaded to Cloudkit", delegate: self, cancelButtonTitle: "Dismiss").show()
-        startButton.enabled = true
+        let alert = UIAlertController(title: "success", message: "successfully uploaded to Cloudkit", preferredStyle: UIAlertController.Style.alert)
+        self.present(alert, animated: true, completion: nil)
+
+        startButton.isEnabled = true
     }
 }
